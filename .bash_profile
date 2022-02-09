@@ -4,7 +4,6 @@
 umask 022
 
 # Manually modify system settings here.
-ROOTFS="${ROOTFS:-http://os.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz}"
 PACKAGES="${PACKAGES:-pulseaudio chromium x11vnc xorg-server-xvfb novnc websockify python-numpy tree ttf-droid}"
 TIMEZONE="${TIMEZONE:-America/New_York}"
 LOCALE="${LOCALE:-en_US}"
@@ -22,12 +21,6 @@ fi
 
 # Rootfs initial setup.
 if [[ ! -d "$PREFIX/var/lib/proot-distro/installed-rootfs/$DISTRO" ]]; then
-  if [[ ! -f "$PREFIX/var/lib/proot-distro/dlcache/${ROOTFS##*/}" ]]; then
-    echo "[•] Fetch rootfs and update sources..."
-    curl -L -C - "$ROOTFS" -o $PREFIX/var/lib/proot-distro/dlcache/${ROOTFS##*/}
-    sed -i -E "s|(TARBALL_URL\['aarch64'\]=).*|\1$ROOTFS|" $PREFIX/etc/proot-distro/$DISTRO.sh
-    sed -i -E "s|(TARBALL_SHA256\['aarch64'\]=).*|\1$(sha256sum $PREFIX/var/lib/proot-distro/dlcache/${ROOTFS##*/} | awk '{print $1}')|" $PREFIX/etc/proot-distro/$DISTRO.sh
-  fi
   echo "[•] Install rootfs and prepare for initial setup..."
   proot-distro install $DISTRO
   echo "[•] Copy existing dotfiles/overlays/packages..."
@@ -71,15 +64,13 @@ cat << ... > "$PREFIX/var/lib/proot-distro/installed-rootfs/$DISTRO/root/.bash_p
   [[ -d /tmp/overlays ]] && cp -a /tmp/overlays/. /
   echo "[•] Clean up and exit initial setup..."
   su -c 'yes | trizen -Scc' $USERNAME
-  rm -f /root/.bash_profile
-  echo "[•] Please restart Termux..."
-  exit
+  rm -f /root/.bash_profile && exit
 ...
-
-  exec proot-distro login --shared-tmp $DISTRO
+  proot-distro login --shared-tmp $DISTRO
 fi
 
 # Enable PulseAudio sound streaming.
 pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1 > /dev/null
 
+# Login to rootfs as user.
 proot-distro login --shared-tmp --user $USERNAME $DISTRO ${@}

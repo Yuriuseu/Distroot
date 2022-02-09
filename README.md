@@ -22,13 +22,12 @@ curl -Lo- https://github.com/Yuriuseu/Distroot/tarball/main | tar -xzf - --exclu
 
 To change the general defaults, modify the [`bash_profile`](./.bash_profile) global variables:
 
-- [`$ROOTFS`](https://archlinuxarm.org/platforms/armv8/generic): Arch Linux AArch64 archive download URL.
 - [`$PACKAGES`](https://archlinux.org/packages/): Packages to install (including [AUR](https://aur.archlinux.org/) packages).
 - [`$TIMEZONE`](https://wiki.archlinux.org/title/System_time#Time_zone): Local time zone (default: `America/New_York`).
 - [`$LOCALE`](https://wiki.archlinux.org/title/locale): System language (default: `en_US`).
 - `$USERNAME`: Required user account (default: `guest`).
 - `$PASSWORD`: User account password (blank by default, using `!authenticate` for `sudo` access without password).
-- `$DISTRO`: Rootfs install directory (default: `archlinux`).
+- `$DISTRO`: [PRoot Distro](https://github.com/termux/proot-distro) distribution alias (default: `archlinux`).
 
 System/user-specific files and custom packages:
 
