@@ -85,12 +85,12 @@ proot-distro install archlinux
 Default setup uses [X11VNC](https://wiki.archlinux.org/title/x11vnc) and [noVNC](https://novnc.com/). The [xlaunch](./dotfiles/.local/bin/xlaunch) script is used to start the Desktop Environment manually. By default, it launches the custom [dwm](./packages/dwm) window manager. To start a different DE or WM like XFCE:
 
 ```bash
-exec xlaunch dbus-launch --exit-with-session xfce4
+exec xlaunch dbus-launch --exit-with-session startxfce4
 ```
 
-Then access the desktop in the browser [localhost:6080/vnc.html](http://localhost:6080/vnc.html).
+Then access the desktop in the browser: [`localhost:6080/vnc.html`](http://localhost:6080/vnc.html).
 
-> **Note**: This doesn't require a password to connect. To setup a password, run: `x11vnc -usepw` first before `xlaunch`.
+> **Note**: This doesn't require a password to connect. To setup a password, change the `-nopw` flag of `x11vnc` to `-usepw`, then run `x11vnc -usepw` first before `xlaunch`.
 
 ### Audio access and X server speed
 
