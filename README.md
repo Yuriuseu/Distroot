@@ -31,7 +31,7 @@ To change the general defaults, modify the [`bash_profile`](./.bash_profile) glo
 System/user-specific files and custom packages:
 
 - [`dotfiles/`](./dotfiles): Contains user-specific configuration files. This will be copied to created user's home directory.
-- [`overlays/`]: Contains root-level system files. This will be copied to root (`/`) directory.
+- `overlays/`: Contains root-level system files. This will be copied to root (`/`) directory.
 - [`packages/`](./packages): Contains custom packages to be built and installed with `makepkg`.
 
 > **Note**: These folders will be moved to `$TMPDIR`. A backup of these folders is necessary.
