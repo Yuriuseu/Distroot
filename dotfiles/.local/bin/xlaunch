@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+export DISPLAY=:0
+Xvfb $DISPLAY -screen 0 1280x720x24 &
+x11vnc -display $DISPLAY -rfbport 5900 -shared -forever -nopw -noxdamage -noshm &
+novnc --vnc localhost:5900 --listen localhost:6080 &
+${@:-dbus-launch --sh-syntax --exit-with-session dwm}

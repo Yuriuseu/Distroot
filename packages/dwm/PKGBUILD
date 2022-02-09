@@ -1,0 +1,23 @@
+# Maintainer: Yuriuseu
+
+pkgname="dwm"
+pkgver=2022.02.07
+pkgrel=1
+pkgdesc="Dynamic Window Manager for X"
+url="https://github.com/Yuriuseu/Distroot"
+arch=("i686" "x86_64" "armv7h" "aarch64")
+license=("MIT")
+depends=("libx11" "libxinerama" "libxft")
+optdepends=("dmenu: Application launcher"
+	"ttf-droid: Default text font"
+	"ttf-mdi: Default icon font")
+
+pkgver() {
+	date +'%Y.%m.%d'
+}
+
+package() {
+	cd "$startdir"
+	make DESTDIR="$pkgdir" install
+	install -D -m 0644 -t "$pkgdir/usr/share/licenses/$pkgname" LICENSE
+}

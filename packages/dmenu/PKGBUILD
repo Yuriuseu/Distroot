@@ -1,0 +1,22 @@
+# Maintainer: Yuriuseu
+
+pkgname="dmenu"
+pkgver=2022.02.05
+pkgrel=1
+pkgdesc="Dynamic Menu for X"
+url="https://github.com/Yuriuseu/dmenu"
+arch=("i686" "x86_64" "armv7h" "aarch64")
+license=("MIT")
+depends=("libx11" "libxinerama" "libxft")
+optdepends=("ttf-droid: Default text font"
+	"ttf-mdi: Default icon font")
+
+pkgver() {
+	date +'%Y.%m.%d'
+}
+
+package() {
+	cd "$startdir"
+	make DESTDIR="$pkgdir" install
+	install -D -m 0644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname"
+}

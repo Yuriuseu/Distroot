@@ -1,0 +1,5 @@
+ttf-mdi/
+pkg/
+src/
+*.zst
+*.pkg.tar.xz

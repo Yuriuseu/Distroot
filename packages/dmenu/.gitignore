@@ -1,0 +1,7 @@
+pkg/
+src/
+dmenu
+stest
+*.o
+*.zst
+*.pkg.tar.xz

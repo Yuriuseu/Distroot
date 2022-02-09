@@ -1,0 +1,24 @@
+# Maintainer: Yuriuseu
+
+pkgname="ttf-mdi"
+pkgver=r118.8cfdab3
+pkgrel=1
+pkgdesc="Material Design Icons Webfont"
+arch=("any")
+url="https://materialdesignicons.com"
+license=("Apache")
+makedepends=("git")
+options=("!strip")
+source=("$pkgname::git+https://github.com/Templarian/MaterialDesign-Webfont.git")
+sha256sums=("SKIP")
+
+pkgver() {
+	cd $pkgname
+	printf 'r%s.%s' $(git rev-list --count HEAD) $(git rev-parse --short HEAD)
+}
+
+package() {
+	cd $pkgname
+	install -D -m 0644 -t "$pkgdir/usr/share/fonts/${pkgname#*-}/MaterialDesignIcons-Webfont.ttf" fonts/*.ttf
+	install -D -m 0644 -t "$pkgdir/usr/share/licenses/$pkgname" LICENSE
+}
