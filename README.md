@@ -2,6 +2,8 @@
 
 Termux distro chroot environment.
 
+> **Note**: This is originally a personal web development environment setup (see the reddit post [here](https://www.reddit.com/r/termux/comments/snro9a/minimal_web_development_environment_generic_arch/?utm_medium=android_app&utm_source=share)).
+
 ## Installation
 
 Download the files to Termux home directory, then relaunch the app:
