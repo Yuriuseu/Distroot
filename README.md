@@ -20,19 +20,19 @@ curl -Lo- https://github.com/Yuriuseu/Distroot/tarball/main | tar -xzf - --exclu
 
 To change the general defaults, modify the [`bash_profile`](./.bash_profile) global variables:
 
-- [`**$ROOTFS**`](https://archlinuxarm.org/platforms/armv8/generic): Arch Linux AArch64 archive download URL.
-- [`**$PACKAGES**`](https://archlinux.org/packages/): Packages to install (including [AUR](https://aur.archlinux.org/) packages).
-- [`**$TIMEZONE**`](https://wiki.archlinux.org/title/System_time#Time_zone): Local time zone (default: `America/New_York`).
-- [`**$LOCALE**`](https://wiki.archlinux.org/title/locale): System language (default: `en_US`).
-- `**$USERNAME**`: Required user account (default: `guest`).
-- `**$PASSWORD**`: User account password (blank by default, using `!authenticate` for `sudo` access without password).
-- `**$DISTRO**`: Rootfs install directory (default: `archlinux`).
+- [`$ROOTFS`](https://archlinuxarm.org/platforms/armv8/generic): Arch Linux AArch64 archive download URL.
+- [`$PACKAGES`](https://archlinux.org/packages/): Packages to install (including [AUR](https://aur.archlinux.org/) packages).
+- [`$TIMEZONE`](https://wiki.archlinux.org/title/System_time#Time_zone): Local time zone (default: `America/New_York`).
+- [`$LOCALE`](https://wiki.archlinux.org/title/locale): System language (default: `en_US`).
+- `$USERNAME`: Required user account (default: `guest`).
+- `$PASSWORD`: User account password (blank by default, using `!authenticate` for `sudo` access without password).
+- `$DISTRO`: Rootfs install directory (default: `archlinux`).
 
 System/user-specific files and custom packages:
 
-- [`**dotfiles/**`](./dotfiles): Contains user-specific configuration files. This will be copied to created user's home directory.
-- [`**overlays/**`]: Contains root-level system files. This will be copied to root (`/`) directory.
-- [`**packages/**`](./packages): Contains custom packages to be built and installed with `makepkg`.
+- [`dotfiles/`](./dotfiles): Contains user-specific configuration files. This will be copied to created user's home directory.
+- [`overlays/`]: Contains root-level system files. This will be copied to root (`/`) directory.
+- [`packages/`](./packages): Contains custom packages to be built and installed with `makepkg`.
 
 > **Note**: These folders will be moved to `$TMPDIR`. A backup of these folders is necessary.
 
@@ -59,6 +59,8 @@ exec xlaunch dbus-launch --exit-with-session startxfce4
 Then access the desktop in the browser: [`localhost:6080/vnc.html`](http://localhost:6080/vnc.html).
 
 > **Note**: This doesn't require a password to connect. See [X11VNC](https://wiki.archlinux.org/title/x11vnc) for more details.
+
+> **Note**: See `man dwm` for DWM keyboard combinations.
 
 ### Audio access and speed
 
