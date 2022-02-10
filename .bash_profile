@@ -55,8 +55,8 @@ cat << ... > "$PREFIX/var/lib/proot-distro/installed-rootfs/$DISTRO/root/.bash_p
   su -c 'trizen -Syu --noconfirm ${PACKAGES[@]}' $USERNAME
   echo "[•] Build existing custom packages with makepkg..."
   for package in /tmp/packages/*; do
-    if [[ -d "$package" ]]; then
-      cd $package
+    if [[ -d "\$package" ]]; then
+      cd \$package
       su -c 'makepkg -si --noconfirm' $USERNAME
     fi
   done
